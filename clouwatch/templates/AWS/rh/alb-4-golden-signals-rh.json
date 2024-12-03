@@ -48,7 +48,7 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
-    "id": 15,
+    "id": 13,
     "links": [],
     "panels": [
       {
@@ -191,7 +191,7 @@
             },
             "dimensions": {
               "LoadBalancer": "$loadbalancer",
-              "TargetGroup": "*"
+              "TargetGroup": "$targetGroup"
             },
             "expression": "",
             "id": "",
@@ -210,7 +210,7 @@
             "statistic": "Average"
           }
         ],
-        "title": "Response Time ",
+        "title": "Response Time (seconds)",
         "transformations": [
           {
             "id": "labelsToFields",
@@ -320,7 +320,7 @@
             },
             "dimensions": {
               "LoadBalancer": "$loadbalancer",
-              "TargetGroup": "*"
+              "TargetGroup": "$targetGroup"
             },
             "expression": "",
             "id": "",
@@ -328,7 +328,7 @@
             "logGroups": [],
             "matchExact": true,
             "metricEditorMode": 0,
-            "metricName": "RequestCountPerTarget",
+            "metricName": "RequestCount",
             "metricQueryType": 0,
             "namespace": "AWS/ApplicationELB",
             "period": "",
@@ -336,10 +336,10 @@
             "refId": "A",
             "region": "default",
             "sqlExpression": "",
-            "statistic": "SampleCount"
+            "statistic": "Sum"
           }
         ],
-        "title": "Requests",
+        "title": "Requests (count/min)",
         "transformations": [
           {
             "id": "labelsToFields",
@@ -404,7 +404,7 @@
               "axisPlacement": "auto",
               "barAlignment": 0,
               "barWidthFactor": 0.6,
-              "drawStyle": "points",
+              "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
               "hideFrom": {
@@ -604,7 +604,7 @@
             "statistic": "Sum"
           }
         ],
-        "title": "Errors 5XX",
+        "title": "Errors 5XX - Load Balancer",
         "type": "timeseries"
       },
       {
@@ -625,7 +625,7 @@
               "axisPlacement": "auto",
               "barAlignment": 0,
               "barWidthFactor": 0.6,
-              "drawStyle": "points",
+              "drawStyle": "line",
               "fillOpacity": 0,
               "gradientMode": "none",
               "hideFrom": {
@@ -754,7 +754,7 @@
             "statistic": "SampleCount"
           }
         ],
-        "title": "Errors 4XX ",
+        "title": "Errors 4XX  - Load Balancer",
         "type": "timeseries"
       },
       {
@@ -846,7 +846,7 @@
             },
             "dimensions": {
               "LoadBalancer": "$loadbalancer",
-              "TargetGroup": "*"
+              "TargetGroup": "$targetGroup"
             },
             "expression": "",
             "id": "",
@@ -975,7 +975,7 @@
             },
             "dimensions": {
               "LoadBalancer": "$loadbalancer",
-              "TargetGroup": "*"
+              "TargetGroup": "$targetGroup"
             },
             "expression": "",
             "id": "",
@@ -1299,8 +1299,8 @@
         },
         {
           "current": {
-            "text": "tangerino",
-            "value": "401117659415"
+            "text": "Prd - Solides",
+            "value": "293923110079"
           },
           "datasource": {
             "type": "cloudwatch",
@@ -1343,8 +1343,8 @@
         },
         {
           "current": {
-            "text": "app/legado-production-alb/fa6782734b0c267d",
-            "value": "app/legado-production-alb/fa6782734b0c267d"
+            "text": "app/EXTERNALAPP-PRD/bd44e9c6b6435c44",
+            "value": "app/EXTERNALAPP-PRD/bd44e9c6b6435c44"
           },
           "datasource": {
             "type": "cloudwatch",
@@ -1356,10 +1356,45 @@
           "name": "loadbalancer",
           "options": [],
           "query": {
-            "accountId": "293923110079",
+            "accountId": "$account",
             "dimensionFilters": {},
             "dimensionKey": "LoadBalancer",
             "metricName": "ActiveConnectionCount",
+            "namespace": "AWS/ApplicationELB",
+            "queryType": "dimensionValues",
+            "refId": "CloudWatchVariableQueryEditor-VariableQuery",
+            "region": "$region"
+          },
+          "refresh": 1,
+          "regex": "",
+          "type": "query"
+        },
+        {
+          "current": {
+            "text": [
+              "targetgroup/JOBS-INTEGRATION-PRD/1e874b871071f7d4"
+            ],
+            "value": [
+              "targetgroup/JOBS-INTEGRATION-PRD/1e874b871071f7d4"
+            ]
+          },
+          "datasource": {
+            "type": "cloudwatch",
+            "uid": "P034F075C744B399F"
+          },
+          "definition": "",
+          "includeAll": true,
+          "label": "Target Group",
+          "multi": true,
+          "name": "targetGroup",
+          "options": [],
+          "query": {
+            "accountId": "$account",
+            "dimensionFilters": {
+              "LoadBalancer": "$loadbalancer"
+            },
+            "dimensionKey": "TargetGroup",
+            "metricName": "HealthyHostCount",
             "namespace": "AWS/ApplicationELB",
             "queryType": "dimensionValues",
             "refId": "CloudWatchVariableQueryEditor-VariableQuery",
@@ -1378,7 +1413,7 @@
     "timepicker": {},
     "timezone": "browser",
     "title": "The Four Golden Signals",
-    "uid": "fe5bugz0dma",
-    "version": 39,
+    "uid": "fe5bugz0ddp1a",
+    "version": 23,
     "weekStart": ""
   }
