@@ -1356,7 +1356,7 @@
           "name": "loadbalancer",
           "options": [],
           "query": {
-            "accountId": "$account",
+            "accountId": "293923110079",
             "dimensionFilters": {},
             "dimensionKey": "LoadBalancer",
             "metricName": "ActiveConnectionCount",
