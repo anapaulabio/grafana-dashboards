@@ -1,0 +1,1392 @@
+{
+    "__inputs": [
+    {
+      "name": "DS_CLOUDWATCH",
+      "label": "cloudwatch",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "cloudwatch",
+      "pluginName": "CloudWatch"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "datasource",
+      "id": "cloudwatch",
+      "name": "CloudWatch",
+      "version": "1.0.0"
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "7.5.5"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    }
+  ],  
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "grafana",
+            "uid": "-- Grafana --"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 14,
+    "links": [],
+    "panels": [
+      {
+        "datasource": {
+          "type": "cloudwatch",
+          "uid": "P034F075C744B399F"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "percent"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 5,
+          "x": 0,
+          "y": 0
+        },
+        "id": 3,
+        "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "sizing": "auto"
+        },
+        "pluginVersion": "11.3.1",
+        "targets": [
+          {
+            "accountId": "$account",
+            "datasource": {
+              "type": "cloudwatch",
+              "uid": "P034F075C744B399F"
+            },
+            "dimensions": {
+              "ClusterName": "$cluster",
+              "ServiceName": "$servicename"
+            },
+            "expression": "",
+            "id": "",
+            "label": "",
+            "logGroups": [],
+            "matchExact": true,
+            "metricEditorMode": 0,
+            "metricName": "CpuUtilized",
+            "metricQueryType": 0,
+            "namespace": "ECS/ContainerInsights",
+            "period": "",
+            "queryMode": "Metrics",
+            "refId": "A",
+            "region": "default",
+            "sqlExpression": "",
+            "statistic": "Sum"
+          },
+          {
+            "accountId": "$account",
+            "datasource": {
+              "type": "cloudwatch",
+              "uid": "P034F075C744B399F"
+            },
+            "dimensions": {
+              "ClusterName": "$cluster",
+              "ServiceName": "$servicename"
+            },
+            "expression": "",
+            "hide": false,
+            "id": "",
+            "label": "",
+            "logGroups": [],
+            "matchExact": true,
+            "metricEditorMode": 0,
+            "metricName": "CpuReserved",
+            "metricQueryType": 0,
+            "namespace": "ECS/ContainerInsights",
+            "period": "",
+            "queryMode": "Metrics",
+            "refId": "B",
+            "region": "default",
+            "sqlExpression": "",
+            "statistic": "Sum"
+          }
+        ],
+        "title": "CPUUtilization (%)",
+        "transformations": [
+          {
+            "id": "calculateField",
+            "options": {
+              "binary": {
+                "left": {
+                  "matcher": {
+                    "id": "byName",
+                    "options": "CpuUtilized"
+                  }
+                },
+                "operator": "/",
+                "right": {
+                  "matcher": {
+                    "id": "byName",
+                    "options": "CpuReserved"
+                  }
+                }
+              },
+              "mode": "binary",
+              "reduce": {
+                "reducer": "sum"
+              }
+            }
+          },
+          {
+            "id": "calculateField",
+            "options": {
+              "binary": {
+                "left": {
+                  "matcher": {
+                    "id": "byName",
+                    "options": "CpuUtilized / CpuReserved"
+                  }
+                },
+                "operator": "*",
+                "right": {
+                  "fixed": "100"
+                }
+              },
+              "mode": "binary",
+              "reduce": {
+                "reducer": "sum"
+              },
+              "replaceFields": true
+            }
+          }
+        ],
+        "type": "gauge"
+      },
+      {
+        "datasource": {
+          "type": "cloudwatch",
+          "uid": "P034F075C744B399F"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "max": 100,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "percent"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 5,
+          "x": 5,
+          "y": 0
+        },
+        "id": 5,
+        "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "sizing": "auto"
+        },
+        "pluginVersion": "11.3.1",
+        "targets": [
+          {
+            "accountId": "$account",
+            "datasource": {
+              "type": "cloudwatch",
+              "uid": "P034F075C744B399F"
+            },
+            "dimensions": {
+              "ClusterName": "$cluster",
+              "ServiceName": "$servicename"
+            },
+            "expression": "(MemoryUtilized * 100) / MemoryReserved\r\n",
+            "id": "",
+            "label": "",
+            "logGroups": [],
+            "matchExact": true,
+            "metricEditorMode": 0,
+            "metricName": "MemoryUtilized",
+            "metricQueryType": 0,
+            "namespace": "ECS/ContainerInsights",
+            "period": "",
+            "queryMode": "Metrics",
+            "refId": "A",
+            "region": "default",
+            "sqlExpression": "",
+            "statistic": "Sum"
+          },
+          {
+            "accountId": "$account",
+            "datasource": {
+              "type": "cloudwatch",
+              "uid": "P034F075C744B399F"
+            },
+            "dimensions": {
+              "ClusterName": "$cluster",
+              "ServiceName": "$servicename"
+            },
+            "expression": "",
+            "hide": false,
+            "id": "",
+            "label": "",
+            "logGroups": [],
+            "matchExact": true,
+            "metricEditorMode": 0,
+            "metricName": "MemoryReserved",
+            "metricQueryType": 0,
+            "namespace": "ECS/ContainerInsights",
+            "period": "",
+            "queryMode": "Metrics",
+            "refId": "B",
+            "region": "default",
+            "sqlExpression": "",
+            "statistic": "Sum"
+          }
+        ],
+        "title": "Memory Utilization (%)",
+        "transformations": [
+          {
+            "id": "calculateField",
+            "options": {
+              "binary": {
+                "left": {
+                  "matcher": {
+                    "id": "byName",
+                    "options": "MemoryUtilized"
+                  }
+                },
+                "operator": "/",
+                "right": {
+                  "matcher": {
+                    "id": "byName",
+                    "options": "MemoryReserved"
+                  }
+                }
+              },
+              "mode": "binary",
+              "reduce": {
+                "include": [
+                  "MemoryUtilized",
+                  "MemoryReserved"
+                ],
+                "reducer": "sum"
+              }
+            }
+          },
+          {
+            "id": "calculateField",
+            "options": {
+              "binary": {
+                "left": {
+                  "matcher": {
+                    "id": "byName",
+                    "options": "MemoryUtilized / MemoryReserved"
+                  }
+                },
+                "operator": "*",
+                "right": {
+                  "fixed": "100"
+                }
+              },
+              "mode": "binary",
+              "reduce": {
+                "reducer": "sum"
+              },
+              "replaceFields": true
+            }
+          }
+        ],
+        "type": "gauge"
+      },
+      {
+        "datasource": {
+          "type": "cloudwatch",
+          "uid": "P034F075C744B399F"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "percent"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 5,
+          "x": 10,
+          "y": 0
+        },
+        "id": 15,
+        "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "sizing": "auto"
+        },
+        "pluginVersion": "11.3.1",
+        "targets": [
+          {
+            "accountId": "$account",
+            "datasource": {
+              "type": "cloudwatch",
+              "uid": "P034F075C744B399F"
+            },
+            "dimensions": {
+              "ClusterName": "$cluster",
+              "ServiceName": "$servicename"
+            },
+            "expression": "",
+            "id": "",
+            "label": "",
+            "logGroups": [],
+            "matchExact": true,
+            "metricEditorMode": 0,
+            "metricName": "EphemeralStorageUtilized",
+            "metricQueryType": 0,
+            "namespace": "ECS/ContainerInsights",
+            "period": "",
+            "queryMode": "Metrics",
+            "refId": "A",
+            "region": "default",
+            "sqlExpression": "",
+            "statistic": "Sum"
+          },
+          {
+            "accountId": "$account",
+            "datasource": {
+              "type": "cloudwatch",
+              "uid": "P034F075C744B399F"
+            },
+            "dimensions": {
+              "ClusterName": "$cluster",
+              "ServiceName": "$servicename"
+            },
+            "expression": "",
+            "hide": false,
+            "id": "",
+            "label": "",
+            "logGroups": [],
+            "matchExact": true,
+            "metricEditorMode": 0,
+            "metricName": "EphemeralStorageReserved",
+            "metricQueryType": 0,
+            "namespace": "ECS/ContainerInsights",
+            "period": "",
+            "queryMode": "Metrics",
+            "refId": "B",
+            "region": "default",
+            "sqlExpression": "",
+            "statistic": "Sum"
+          }
+        ],
+        "title": "Temporary storage usage",
+        "transformations": [
+          {
+            "id": "calculateField",
+            "options": {
+              "binary": {
+                "left": {
+                  "matcher": {
+                    "id": "byName",
+                    "options": "EphemeralStorageUtilized"
+                  }
+                },
+                "operator": "*",
+                "right": {
+                  "fixed": "100"
+                }
+              },
+              "mode": "binary",
+              "reduce": {
+                "reducer": "sum"
+              }
+            }
+          },
+          {
+            "id": "calculateField",
+            "options": {
+              "binary": {
+                "left": {
+                  "matcher": {
+                    "id": "byName",
+                    "options": "EphemeralStorageUtilized * 100"
+                  }
+                },
+                "operator": "/",
+                "right": {
+                  "matcher": {
+                    "id": "byName",
+                    "options": "EphemeralStorageReserved"
+                  }
+                }
+              },
+              "mode": "binary",
+              "reduce": {
+                "reducer": "sum"
+              },
+              "replaceFields": true
+            }
+          }
+        ],
+        "type": "gauge"
+      },
+      {
+        "datasource": {
+          "type": "cloudwatch",
+          "uid": "P034F075C744B399F"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "text",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 5,
+          "x": 15,
+          "y": 0
+        },
+        "id": 11,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.3.1",
+        "targets": [
+          {
+            "accountId": "$account",
+            "datasource": {
+              "type": "cloudwatch",
+              "uid": "P034F075C744B399F"
+            },
+            "dimensions": {
+              "ClusterName": "$cluster",
+              "ServiceName": "$servicename"
+            },
+            "expression": "",
+            "id": "",
+            "label": "",
+            "logGroups": [],
+            "matchExact": true,
+            "metricEditorMode": 0,
+            "metricName": "RunningTaskCount",
+            "metricQueryType": 0,
+            "namespace": "ECS/ContainerInsights",
+            "period": "",
+            "queryMode": "Metrics",
+            "refId": "A",
+            "region": "default",
+            "sqlExpression": "",
+            "statistic": "Sum"
+          }
+        ],
+        "title": "Running Task ",
+        "transformations": [
+          {
+            "id": "labelsToFields",
+            "options": {
+              "keepLabels": [
+                "ServiceName"
+              ],
+              "valueLabel": "ServiceName"
+            }
+          }
+        ],
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "cloudwatch",
+          "uid": "P034F075C744B399F"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "text",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 4,
+          "x": 20,
+          "y": 0
+        },
+        "id": 9,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.3.1",
+        "targets": [
+          {
+            "accountId": "$account",
+            "datasource": {
+              "type": "cloudwatch",
+              "uid": "P034F075C744B399F"
+            },
+            "dimensions": {
+              "ClusterName": "$cluster",
+              "ServiceName": "$servicename"
+            },
+            "expression": "",
+            "id": "",
+            "label": "",
+            "logGroups": [],
+            "matchExact": true,
+            "metricEditorMode": 0,
+            "metricName": "DesiredTaskCount",
+            "metricQueryType": 0,
+            "namespace": "ECS/ContainerInsights",
+            "period": "",
+            "queryMode": "Metrics",
+            "refId": "A",
+            "region": "default",
+            "sqlExpression": "",
+            "statistic": "Sum"
+          }
+        ],
+        "title": "Desired Task",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "cloudwatch",
+          "uid": "P034F075C744B399F"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "text",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 2,
+          "w": 4,
+          "x": 20,
+          "y": 3
+        },
+        "id": 10,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.3.1",
+        "targets": [
+          {
+            "accountId": "$account",
+            "datasource": {
+              "type": "cloudwatch",
+              "uid": "P034F075C744B399F"
+            },
+            "dimensions": {
+              "ClusterName": "$cluster",
+              "ServiceName": "$servicename"
+            },
+            "expression": "",
+            "id": "",
+            "label": "",
+            "logGroups": [],
+            "matchExact": true,
+            "metricEditorMode": 0,
+            "metricName": "PendingTaskCount",
+            "metricQueryType": 0,
+            "namespace": "ECS/ContainerInsights",
+            "period": "",
+            "queryMode": "Metrics",
+            "refId": "A",
+            "region": "default",
+            "sqlExpression": "",
+            "statistic": "Sum"
+          }
+        ],
+        "title": "Pending Task",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "cloudwatch",
+          "uid": "P034F075C744B399F"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "decbytes"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 5
+        },
+        "id": 7,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "11.3.1",
+        "targets": [
+          {
+            "accountId": "$account",
+            "datasource": {
+              "type": "cloudwatch",
+              "uid": "P034F075C744B399F"
+            },
+            "dimensions": {
+              "ClusterName": "$cluster",
+              "ServiceName": "$servicename"
+            },
+            "expression": "",
+            "id": "",
+            "label": "",
+            "logGroups": [],
+            "matchExact": true,
+            "metricEditorMode": 0,
+            "metricName": "NetworkRxBytes",
+            "metricQueryType": 0,
+            "namespace": "ECS/ContainerInsights",
+            "period": "",
+            "queryMode": "Metrics",
+            "refId": "A",
+            "region": "default",
+            "sqlExpression": "",
+            "statistic": "Average"
+          }
+        ],
+        "title": "Network Reception (bytes/seconds)",
+        "transformations": [
+          {
+            "id": "labelsToFields",
+            "options": {
+              "keepLabels": [
+                "ServiceName"
+              ],
+              "valueLabel": "ServiceName"
+            }
+          }
+        ],
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "cloudwatch",
+          "uid": "P034F075C744B399F"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "decbytes"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 5
+        },
+        "id": 13,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "11.3.1",
+        "targets": [
+          {
+            "accountId": "$account",
+            "datasource": {
+              "type": "cloudwatch",
+              "uid": "P034F075C744B399F"
+            },
+            "dimensions": {
+              "ClusterName": "$cluster",
+              "ServiceName": "$servicename"
+            },
+            "expression": "",
+            "id": "",
+            "label": "",
+            "logGroups": [],
+            "matchExact": true,
+            "metricEditorMode": 0,
+            "metricName": "NetworkTxBytes",
+            "metricQueryType": 0,
+            "namespace": "ECS/ContainerInsights",
+            "period": "",
+            "queryMode": "Metrics",
+            "refId": "A",
+            "region": "default",
+            "sqlExpression": "",
+            "statistic": "Average"
+          }
+        ],
+        "title": "Network Transmission (bytes/seconds)",
+        "transformations": [
+          {
+            "id": "labelsToFields",
+            "options": {
+              "keepLabels": [
+                "ServiceName"
+              ],
+              "valueLabel": "ServiceName"
+            }
+          }
+        ],
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "cloudwatch",
+          "uid": "P034F075C744B399F"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 13
+        },
+        "id": 8,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "11.3.1",
+        "targets": [
+          {
+            "accountId": "$account",
+            "datasource": {
+              "type": "cloudwatch",
+              "uid": "P034F075C744B399F"
+            },
+            "dimensions": {
+              "ClusterName": "$cluster",
+              "ServiceName": "$servicename"
+            },
+            "expression": "",
+            "id": "",
+            "label": "",
+            "logGroups": [],
+            "matchExact": true,
+            "metricEditorMode": 0,
+            "metricName": "StorageReadBytes",
+            "metricQueryType": 0,
+            "namespace": "ECS/ContainerInsights",
+            "period": "",
+            "queryMode": "Metrics",
+            "refId": "A",
+            "region": "default",
+            "sqlExpression": "",
+            "statistic": "Average"
+          }
+        ],
+        "title": "Storage Read (bytes/seconds)",
+        "transformations": [
+          {
+            "id": "labelsToFields",
+            "options": {
+              "keepLabels": [
+                "ServiceName"
+              ],
+              "valueLabel": "ServiceName"
+            }
+          }
+        ],
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "cloudwatch",
+          "uid": "P034F075C744B399F"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "decbytes"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 13
+        },
+        "id": 12,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "11.3.1",
+        "targets": [
+          {
+            "accountId": "$account",
+            "datasource": {
+              "type": "cloudwatch",
+              "uid": "P034F075C744B399F"
+            },
+            "dimensions": {
+              "ClusterName": "$cluster",
+              "ServiceName": "$servicename"
+            },
+            "expression": "",
+            "id": "",
+            "label": "",
+            "logGroups": [],
+            "matchExact": false,
+            "metricEditorMode": 0,
+            "metricName": "StorageWriteBytes",
+            "metricQueryType": 0,
+            "namespace": "ECS/ContainerInsights",
+            "period": "",
+            "queryMode": "Metrics",
+            "refId": "A",
+            "region": "default",
+            "sqlExpression": "",
+            "statistic": "Average"
+          }
+        ],
+        "title": "Storage Write (bytes/seconds)",
+        "transformations": [
+          {
+            "id": "labelsToFields",
+            "options": {
+              "keepLabels": [
+                "ServiceName"
+              ],
+              "valueLabel": "ServiceName"
+            }
+          }
+        ],
+        "type": "timeseries"
+      }
+    ],
+    "preload": false,
+    "schemaVersion": 40,
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "current": {
+            "text": "CloudWatch",
+            "value": "P034F075C744B399F"
+          },
+          "label": "Data Source",
+          "name": "datasource",
+          "options": [],
+          "query": "cloudwatch",
+          "refresh": 1,
+          "regex": "",
+          "type": "datasource"
+        },
+        {
+          "current": {
+            "text": "Prd - Solides",
+            "value": "293923110079"
+          },
+          "datasource": {
+            "type": "cloudwatch",
+            "uid": "P034F075C744B399F"
+          },
+          "definition": "",
+          "label": "Account",
+          "name": "account",
+          "options": [],
+          "query": {
+            "queryType": "accounts",
+            "refId": "CloudWatchVariableQueryEditor-VariableQuery",
+            "region": "default"
+          },
+          "refresh": 1,
+          "regex": "",
+          "type": "query"
+        },
+        {
+          "current": {
+            "text": "Gestao-v3-Payrolls",
+            "value": "Gestao-v3-Payrolls"
+          },
+          "datasource": {
+            "type": "cloudwatch",
+            "uid": "P034F075C744B399F"
+          },
+          "definition": "",
+          "label": "Cluster ",
+          "name": "cluster",
+          "options": [],
+          "query": {
+            "accountId": "$account",
+            "dimensionFilters": {},
+            "dimensionKey": "ClusterName",
+            "metricName": "DeploymentCount",
+            "namespace": "ECS/ContainerInsights",
+            "queryType": "dimensionValues",
+            "refId": "CloudWatchVariableQueryEditor-VariableQuery",
+            "region": "us-east-1"
+          },
+          "refresh": 1,
+          "regex": "",
+          "type": "query"
+        },
+        {
+          "current": {
+            "text": "gestao-v3-payrolls-sideki-prd",
+            "value": "gestao-v3-payrolls-sideki-prd"
+          },
+          "datasource": {
+            "type": "cloudwatch",
+            "uid": "P034F075C744B399F"
+          },
+          "definition": "",
+          "includeAll": false,
+          "label": "Service",
+          "name": "servicename",
+          "options": [],
+          "query": {
+            "accountId": "$account",
+            "dimensionFilters": {
+              "ClusterName": "$cluster"
+            },
+            "dimensionKey": "ServiceName",
+            "metricName": "DeploymentCount",
+            "namespace": "ECS/ContainerInsights",
+            "queryType": "dimensionValues",
+            "refId": "CloudWatchVariableQueryEditor-VariableQuery",
+            "region": "default"
+          },
+          "refresh": 1,
+          "regex": "",
+          "type": "query"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "browser",
+    "title": "ECS Fargate - TESTE",
+    "uid": "ae5u5en7q25t",
+    "version": 52,
+    "weekStart": ""
+  }
