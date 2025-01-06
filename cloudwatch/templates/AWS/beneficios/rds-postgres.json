@@ -58,348 +58,6 @@
               "h": 1,
               "w": 24,
               "x": 0,
-              "y": 0
-            },
-            "id": 7,
-            "panels": [],
-            "title": "Cluster metrics",
-            "type": "row"
-          },
-          {
-            "datasource": {
-              "type": "cloudwatch",
-              "uid": "$datasource"
-            },
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "palette-classic"
-                },
-                "custom": {
-                  "axisBorderShow": false,
-                  "axisCenteredZero": false,
-                  "axisColorMode": "text",
-                  "axisLabel": "",
-                  "axisPlacement": "auto",
-                  "barAlignment": 0,
-                  "barWidthFactor": 0.6,
-                  "drawStyle": "line",
-                  "fillOpacity": 0,
-                  "gradientMode": "none",
-                  "hideFrom": {
-                    "legend": false,
-                    "tooltip": false,
-                    "viz": false
-                  },
-                  "insertNulls": false,
-                  "lineInterpolation": "linear",
-                  "lineWidth": 1,
-                  "pointSize": 5,
-                  "scaleDistribution": {
-                    "type": "linear"
-                  },
-                  "showPoints": "never",
-                  "spanNulls": false,
-                  "stacking": {
-                    "group": "A",
-                    "mode": "none"
-                  },
-                  "thresholdsStyle": {
-                    "mode": "off"
-                  }
-                },
-                "links": [],
-                "mappings": [],
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green",
-                      "value": null
-                    },
-                    {
-                      "color": "red",
-                      "value": 80
-                    }
-                  ]
-                },
-                "unit": "short"
-              },
-              "overrides": []
-            },
-            "gridPos": {
-              "h": 8,
-              "w": 24,
-              "x": 0,
-              "y": 1
-            },
-            "id": 5,
-            "options": {
-              "legend": {
-                "calcs": [
-                  "mean"
-                ],
-                "displayMode": "table",
-                "placement": "right",
-                "showLegend": true
-              },
-              "tooltip": {
-                "mode": "multi",
-                "sort": "none"
-              }
-            },
-            "pluginVersion": "11.3.1",
-            "targets": [
-              {
-                "accountId": "$account",
-                "datasource": {
-                  "uid": "$datasource"
-                },
-                "dimensions": {
-                  "DBClusterIdentifier": "*"
-                },
-                "expression": "",
-                "label": "",
-                "matchExact": true,
-                "metricEditorMode": 0,
-                "metricName": "CPUUtilization",
-                "metricQueryType": 0,
-                "namespace": "AWS/RDS",
-                "period": "$period",
-                "refId": "A",
-                "region": "$region",
-                "statistic": "Maximum"
-              }
-            ],
-            "title": "CPU utilization per cluster [%]",
-            "type": "timeseries"
-          },
-          {
-            "datasource": {
-              "type": "cloudwatch",
-              "uid": "$datasource"
-            },
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "palette-classic"
-                },
-                "custom": {
-                  "axisBorderShow": false,
-                  "axisCenteredZero": false,
-                  "axisColorMode": "text",
-                  "axisLabel": "",
-                  "axisPlacement": "auto",
-                  "barAlignment": 0,
-                  "barWidthFactor": 0.6,
-                  "drawStyle": "line",
-                  "fillOpacity": 0,
-                  "gradientMode": "none",
-                  "hideFrom": {
-                    "legend": false,
-                    "tooltip": false,
-                    "viz": false
-                  },
-                  "insertNulls": false,
-                  "lineInterpolation": "linear",
-                  "lineWidth": 1,
-                  "pointSize": 5,
-                  "scaleDistribution": {
-                    "type": "linear"
-                  },
-                  "showPoints": "never",
-                  "spanNulls": false,
-                  "stacking": {
-                    "group": "A",
-                    "mode": "none"
-                  },
-                  "thresholdsStyle": {
-                    "mode": "off"
-                  }
-                },
-                "links": [],
-                "mappings": [],
-                "min": 0,
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green",
-                      "value": null
-                    },
-                    {
-                      "color": "red",
-                      "value": 80
-                    }
-                  ]
-                },
-                "unit": "short"
-              },
-              "overrides": []
-            },
-            "gridPos": {
-              "h": 8,
-              "w": 12,
-              "x": 0,
-              "y": 9
-            },
-            "id": 8,
-            "options": {
-              "legend": {
-                "calcs": [
-                  "mean"
-                ],
-                "displayMode": "table",
-                "placement": "right",
-                "showLegend": true
-              },
-              "tooltip": {
-                "mode": "multi",
-                "sort": "none"
-              }
-            },
-            "pluginVersion": "11.3.1",
-            "targets": [
-              {
-                "accountId": "$account",
-                "datasource": {
-                  "uid": "$datasource"
-                },
-                "dimensions": {
-                  "DBClusterIdentifier": "*"
-                },
-                "expression": "",
-                "label": "",
-                "matchExact": true,
-                "metricEditorMode": 0,
-                "metricName": "DatabaseConnections",
-                "metricQueryType": 0,
-                "namespace": "AWS/RDS",
-                "period": "$period",
-                "refId": "A",
-                "region": "$region",
-                "statistic": "Sum"
-              }
-            ],
-            "title": "Database connections [count sum]",
-            "type": "timeseries"
-          },
-          {
-            "datasource": {
-              "type": "cloudwatch",
-              "uid": "$datasource"
-            },
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "palette-classic"
-                },
-                "custom": {
-                  "axisBorderShow": false,
-                  "axisCenteredZero": false,
-                  "axisColorMode": "text",
-                  "axisLabel": "",
-                  "axisPlacement": "auto",
-                  "barAlignment": 0,
-                  "barWidthFactor": 0.6,
-                  "drawStyle": "line",
-                  "fillOpacity": 0,
-                  "gradientMode": "none",
-                  "hideFrom": {
-                    "legend": false,
-                    "tooltip": false,
-                    "viz": false
-                  },
-                  "insertNulls": false,
-                  "lineInterpolation": "linear",
-                  "lineWidth": 1,
-                  "pointSize": 5,
-                  "scaleDistribution": {
-                    "type": "linear"
-                  },
-                  "showPoints": "never",
-                  "spanNulls": false,
-                  "stacking": {
-                    "group": "A",
-                    "mode": "none"
-                  },
-                  "thresholdsStyle": {
-                    "mode": "off"
-                  }
-                },
-                "links": [],
-                "mappings": [],
-                "min": 0,
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green",
-                      "value": null
-                    },
-                    {
-                      "color": "red",
-                      "value": 80
-                    }
-                  ]
-                },
-                "unit": "decbytes"
-              },
-              "overrides": []
-            },
-            "gridPos": {
-              "h": 8,
-              "w": 12,
-              "x": 12,
-              "y": 9
-            },
-            "id": 9,
-            "options": {
-              "legend": {
-                "calcs": [
-                  "mean"
-                ],
-                "displayMode": "table",
-                "placement": "right",
-                "showLegend": true
-              },
-              "tooltip": {
-                "mode": "multi",
-                "sort": "none"
-              }
-            },
-            "pluginVersion": "11.3.1",
-            "targets": [
-              {
-                "accountId": "$account",
-                "datasource": {
-                  "uid": "$datasource"
-                },
-                "dimensions": {
-                  "DBClusterIdentifier": "*"
-                },
-                "expression": "",
-                "label": "",
-                "matchExact": true,
-                "metricEditorMode": 0,
-                "metricName": "FreeableMemory",
-                "metricQueryType": 0,
-                "namespace": "AWS/RDS",
-                "period": "$period",
-                "refId": "A",
-                "region": "$region",
-                "statistic": "Average"
-              }
-            ],
-            "title": "Available RAM [bytes]",
-            "type": "timeseries"
-          },
-          {
-            "collapsed": false,
-            "gridPos": {
-              "h": 1,
-              "w": 24,
-              "x": 0,
               "y": 17
             },
             "id": 2,
@@ -1518,75 +1176,67 @@
         ],
         "templating": {
           "list": [
+          {
+            "current": {
+            "text": "CloudWatch",
+            "value": "P034F075C744B399F"
+          },
+          "label": "Data Source",
+          "name": "Datasource",
+          "options": [],
+          "query": "cloudwatch",
+          "refresh": 1,
+          "regex": "",
+          "type": "datasource"
+        },
+        {
+          "current": {
+            "text": "[solides.com.br] BU Cartao Beneficions",
+            "value": "[solides.com.br] BU Cartao Beneficions"
+          },
+          "label": "Account (Fixed)",
+          "name": "account",
+          "hide": 0,
+          "skipUrlSync": true,
+          "options": [
             {
-              "current": {
-                "text": "tangerino",
-                "value": "401117659415"
-              },
-              "datasource": {
-                "type": "cloudwatch",
-                "uid": "P034F075C744B399F"
-              },
-              "definition": "",
-              "includeAll": false,
-              "label": "Account",
-              "name": "account",
-              "options": [],
-              "query": {
-                "queryType": "accounts",
-                "refId": "CloudWatchVariableQueryEditor-VariableQuery",
-                "region": "$region"
-              },
-              "refresh": 1,
-              "regex": "",
-              "type": "query"
-            },
-            {
-              "current": {
-                "text": "CloudWatch",
-                "value": "P034F075C744B399F"
-              },
-              "includeAll": false,
-              "label": "Data source",
-              "name": "datasource",
-              "options": [],
-              "query": "cloudwatch",
-              "refresh": 1,
-              "regex": "",
-              "type": "datasource"
-            },
-            {
-              "current": {
-                "text": "us-east-1",
-                "value": "us-east-1"
-              },
-              "datasource": {
-                "type": "cloudwatch",
-                "uid": "P034F075C744B399F"
-              },
-              "definition": "",
-              "includeAll": false,
-              "label": "Region",
-              "name": "region",
-              "options": [],
-              "query": {
-                "attributeName": "",
-                "dimensionFilters": {},
-                "dimensionKey": "",
-                "ec2Filters": {},
-                "instanceID": "",
-                "metricName": "",
-                "namespace": "",
-                "queryType": "regions",
-                "refId": "CloudWatchVariableQueryEditor-VariableQuery",
-                "region": "",
-                "resourceType": "",
-                "tags": {}
-              },
-              "refresh": 1,
-              "regex": "",
-              "type": "query"
-            },
+              "selected": true,
+              "text": "[solides.com.br] BU Cartao Beneficions",
+              "value": "[solides.com.br] BU Cartao Beneficions"
+            }
+          ],
+          "query": {
+            "queryType": "accounts",
+            "refId": "CloudWatchVariableQueryEditor-VariableQuery",
+            "region": "$region"
+          },
+          "refresh": 0,
+          "multi": false,
+          "includeAll": false,
+          "type": "custom"
+        },
+        {
+          "current": {
+            "text": "us-east-1",
+            "value": "us-east-1"
+          },
+          "datasource": {
+            "type": "cloudwatch",
+            "uid": "P034F075C744B399F"
+          },
+          "definition": "",
+          "label": "Region",
+          "name": "region",
+          "options": [],
+          "query": {
+            "queryType": "regions",
+            "refId": "CloudWatchVariableQueryEditor-VariableQuery",
+            "region": "default"
+          },
+          "refresh": 1,
+          "regex": "",
+          "type": "query"
+        },
             {
               "current": {
                 "text": "300",
@@ -1624,7 +1274,7 @@
         "timepicker": {},
         "timezone": "",
         "title": "Amazon RDS",
-        "uid": "fdrjhz3wla",
+        "uid": "fdrjhz3wla2",
         "version": 5,
         "weekStart": ""
       }
