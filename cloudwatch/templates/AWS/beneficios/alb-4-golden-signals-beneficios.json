@@ -1283,90 +1283,137 @@
     "schemaVersion": 40,
     "tags": [],
     "templating": {
-        "list": [
-          {
-            "current": {
-              "text": "[solides.com.br] BU Cartao Beneficions",
-              "value": "123456789012"
-            },
-            "label": "Account (Fixed)",
-            "name": "account",
-            "hide": 0,
-            "skipUrlSync": true,
-            "options": [
-              {
-                "selected": true,
-                "text": "[solides.com.br] BU Cartao Beneficions",
-                "value": "123456789012"
-              }
+      "list": [
+        {
+          "current": {
+            "text": "CloudWatch",
+            "value": "P034F075C744B399F"
+          },
+          "label": "Data Source",
+          "name": "Datasource",
+          "options": [],
+          "query": "cloudwatch",
+          "refresh": 1,
+          "regex": "",
+          "type": "datasource"
+        },
+        {
+          "current": {
+            "text": "[solides.com.br] BU Cartao Beneficions",
+            "value": "124887097502"
+          },
+          "datasource": {
+            "type": "cloudwatch",
+            "uid": "P034F075C744B399F"
+          },
+          "definition": "",
+          "label": "Account",
+          "name": "account",
+          "options": [],
+          "query": {
+            "queryType": "accounts",
+            "refId": "CloudWatchVariableQueryEditor-VariableQuery",
+            "region": "$region"
+          },
+          "refresh": 1,
+          "regex": "",
+          "type": "query"
+        },
+        {
+          "current": {
+            "text": "us-east-1",
+            "value": "us-east-1"
+          },
+          "datasource": {
+            "type": "cloudwatch",
+            "uid": "P034F075C744B399F"
+          },
+          "definition": "",
+          "label": "Region",
+          "name": "region",
+          "options": [],
+          "query": {
+            "queryType": "regions",
+            "refId": "CloudWatchVariableQueryEditor-VariableQuery",
+            "region": "default"
+          },
+          "refresh": 1,
+          "regex": "",
+          "type": "query"
+        },
+        {
+          "current": {
+            "text": "app/cb-backend-production/3ea778fabfdff273",
+            "value": "app/cb-backend-production/3ea778fabfdff273"
+          },
+          "datasource": {
+            "type": "cloudwatch",
+            "uid": "P034F075C744B399F"
+          },
+          "definition": "",
+          "includeAll": false,
+          "label": "Loadbalancer",
+          "name": "loadbalancer",
+          "options": [],
+          "query": {
+            "accountId": "$account",
+            "dimensionFilters": {},
+            "dimensionKey": "LoadBalancer",
+            "metricName": "ActiveConnectionCount",
+            "namespace": "AWS/ApplicationELB",
+            "queryType": "dimensionValues",
+            "refId": "CloudWatchVariableQueryEditor-VariableQuery",
+            "region": "$region"
+          },
+          "refresh": 1,
+          "regex": "",
+          "type": "query"
+        },
+        {
+          "current": {
+            "text": [
+              "All"
             ],
-            "query": {
-              "queryType": "accounts",
-              "refId": "CloudWatchVariableQueryEditor-VariableQuery",
-              "region": "$region"
-            },
-            "refresh": 0,
-            "multi": false,
-            "includeAll": false,
-            "type": "custom"
+            "value": [
+              "All"
+            ]
           },
-          {
-            "current": {
-              "text": "us-east-1",
-              "value": "us-east-1"
-            },
-            "datasource": {
-              "type": "cloudwatch",
-              "uid": "P034F075C744B399F"
-            },
-            "definition": "",
-            "label": "Region",
-            "name": "region",
-            "options": [],
-            "query": {
-              "queryType": "regions",
-              "refId": "CloudWatchVariableQueryEditor-VariableQuery",
-              "region": "default"
-            },
-            "refresh": 1,
-            "regex": "",
-            "type": "query"
+          "datasource": {
+            "type": "cloudwatch",
+            "uid": "P034F075C744B399F"
           },
-          {
-            
-            "datasource": {
-              "type": "cloudwatch",
-              "uid": "P034F075C744B399F"
+          "definition": "",
+          "includeAll": true,
+          "label": "Target Group",
+          "multi": true,
+          "name": "targetGroup",
+          "options": [],
+          "query": {
+            "accountId": "$account",
+            "dimensionFilters": {
+              "LoadBalancer": "$loadbalancer"
             },
-            "definition": "",
-            "includeAll": false,
-            "label": "Loadbalancer",
-            "name": "loadbalancer",
-            "options": [],
-            "query": {
-              "accountId": "$account",
-              "dimensionFilters": {},
-              "dimensionKey": "LoadBalancer",
-              "metricName": "ActiveConnectionCount",
-              "namespace": "AWS/ApplicationELB",
-              "queryType": "dimensionValues",
-              "refId": "CloudWatchVariableQueryEditor-VariableQuery",
-              "region": "$region"
-            },
-            "refresh": 1,
-            "regex": "",
-            "type": "query"
-          }
-        ]
-      },
-      "time": {
-        "from": "now-6h",
-        "to": "now"
-      },
-      "timepicker": {},
-      "timezone": "browser",
-      "title": "The Four Golden Signals",
-      "uid": "fe5bugz0ddp1",
-      "version": 39,
-      "weekStart": ""
+            "dimensionKey": "TargetGroup",
+            "metricName": "HealthyHostCount",
+            "namespace": "AWS/ApplicationELB",
+            "queryType": "dimensionValues",
+            "refId": "CloudWatchVariableQueryEditor-VariableQuery",
+            "region": "$region"
+          },
+          "refresh": 1,
+          "regex": "",
+          "type": "query"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "browser",
+    "title": "The Four Golden Signals",
+    "uid": "fe5bugz0ddp1a",
+    "version": 23,
+    "weekStart": ""
   }

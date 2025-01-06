@@ -1300,8 +1300,8 @@
         },
         {
           "current": {
-            "text": "Prd - Solides",
-            "value": "293923110079"
+            "text": "[solides.com.br] BU Cartao Beneficions",
+            "value": "124887097502"
           },
           "datasource": {
             "type": "cloudwatch",
@@ -1322,8 +1322,8 @@
         },
         {
           "current": {
-            "text": "Gestao-v3-Payrolls",
-            "value": "Gestao-v3-Payrolls"
+            "text": "cb-services-production",
+            "value": "cb-services-production"
           },
           "datasource": {
             "type": "cloudwatch",
@@ -1349,7 +1349,7 @@
         },
         {
           "current": {
-            "text": "gestao-v3-payrolls-sideki-prd",
+            "text": "cb-financial-production-service",
             "value": "gestao-v3-payrolls-sideki-prd"
           },
           "datasource": {
