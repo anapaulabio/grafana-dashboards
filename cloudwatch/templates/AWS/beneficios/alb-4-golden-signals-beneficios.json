@@ -1286,21 +1286,8 @@
         "list": [
           {
             "current": {
-              "text": "CloudWatch",
-              "value": "P034F075C744B399F"
-            },
-            "label": "Data Source",
-            "name": "Datasource",
-            "options": [],
-            "query": "cloudwatch",
-            "refresh": 1,
-            "regex": "",
-            "type": "datasource"
-          },
-          {
-            "current": {
               "text": "[solides.com.br] BU Cartao Beneficions",
-              "value": "[solides.com.br] BU Cartao Beneficions"
+              "value": "123456789012"
             },
             "label": "Account (Fixed)",
             "name": "account",
@@ -1310,7 +1297,7 @@
               {
                 "selected": true,
                 "text": "[solides.com.br] BU Cartao Beneficions",
-                "value": "[solides.com.br] BU Cartao Beneficions"
+                "value": "123456789012"
               }
             ],
             "query": {
@@ -1346,10 +1333,7 @@
             "type": "query"
           },
           {
-            "current": {
-              "text": "app/legado-production-alb/fa6782734b0c267d",
-              "value": "app/legado-production-alb/fa6782734b0c267d"
-            },
+            
             "datasource": {
               "type": "cloudwatch",
               "uid": "P034F075C744B399F"

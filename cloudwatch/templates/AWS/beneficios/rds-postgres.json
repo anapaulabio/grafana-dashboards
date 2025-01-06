@@ -1176,45 +1176,32 @@
         ],
         "templating": {
           "list": [
-          {
-            "current": {
-            "text": "CloudWatch",
-            "value": "P034F075C744B399F"
-          },
-          "label": "Data Source",
-          "name": "Datasource",
-          "options": [],
-          "query": "cloudwatch",
-          "refresh": 1,
-          "regex": "",
-          "type": "datasource"
-        },
-        {
-          "current": {
-            "text": "[solides.com.br] BU Cartao Beneficions",
-            "value": "[solides.com.br] BU Cartao Beneficions"
-          },
-          "label": "Account (Fixed)",
-          "name": "account",
-          "hide": 0,
-          "skipUrlSync": true,
-          "options": [
             {
-              "selected": true,
-              "text": "[solides.com.br] BU Cartao Beneficions",
-              "value": "[solides.com.br] BU Cartao Beneficions"
-            }
-          ],
-          "query": {
-            "queryType": "accounts",
-            "refId": "CloudWatchVariableQueryEditor-VariableQuery",
-            "region": "$region"
-          },
-          "refresh": 0,
-          "multi": false,
-          "includeAll": false,
-          "type": "custom"
-        },
+              "current": {
+                "text": "[solides.com.br] BU Cartao Beneficions",
+                "value": "123456789012"
+              },
+              "label": "Account (Fixed)",
+              "name": "account",
+              "hide": 0,
+              "skipUrlSync": true,
+              "options": [
+                {
+                  "selected": true,
+                  "text": "[solides.com.br] BU Cartao Beneficions",
+                  "value": "123456789012"
+                }
+              ],
+              "query": {
+                "queryType": "accounts",
+                "refId": "CloudWatchVariableQueryEditor-VariableQuery",
+                "region": "$region"
+              },
+              "refresh": 0,
+              "multi": false,
+              "includeAll": false,
+              "type": "custom"
+            },
         {
           "current": {
             "text": "us-east-1",
